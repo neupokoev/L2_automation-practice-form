@@ -28,6 +28,9 @@ public class AutomationPracticeFormTests {
         String firstName = "Ivan",
                 lastName = "Ivanov",
                 email = "test@gmail.com",
+                gender = "Male",
+                filename = "testFile.JPG",
+                country = "Russia",
                 userNumber = "9111111111";
 
         // Fill the form
@@ -43,23 +46,23 @@ public class AutomationPracticeFormTests {
         $("#subjectsInput").setValue("Co").pressEnter();
         $("[for='hobbies-checkbox-1']").click();
         $("[for='hobbies-checkbox-2']").click();
-        $("#uploadPicture").uploadFile(new File("src/resources/testFile.JPG"));
-        $("#currentAddress").setValue("Russia");
+        $("#uploadPicture").uploadFile(new File("src/resources/" + filename));
+        $("#currentAddress").setValue(country);
         $("#react-select-3-input").setValue("Raja").pressEnter();
         $("#react-select-4-input").setValue("Jais").pressEnter();
         $("#submit").click();
 
-        //Check data
+        // Check data
         $(".table-responsive").
                 shouldHave(text(firstName + " " + lastName),
                         text(email),
-                        text("Male"),
+                        text(gender),
                         text(userNumber),
                         text("18 March,1991"),
                         text("Computer Science"),
                         text("Sports, Reading"),
-                        text("testFile.JPG"),
-                        text("Russia"),
+                        text(filename),
+                        text(country),
                         text("Rajasthan Jaiselmer")
                 );
     }
